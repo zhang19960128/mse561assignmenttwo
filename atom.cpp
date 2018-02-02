@@ -57,3 +57,33 @@ void updatelist(ndarrays<atom>& input,int size){
 					}
 				}
 }
+void updatetensor(ndarrays<atom>& atomall,int size){
+    std::vector<double> temp(4,0);
+    std::vector<double> all(4,0);
+    std::list<int>::iterator b;
+    for(size_t i=0;i<size;i++)
+        for(size_t j=0;j<size;j++){
+            for(size_t k=0;k<4;k++){
+                all[k]=0.0;
+            }
+            b=atomall(i,j).neighbory.begin();
+            for(std::list<int>::iterator a=atomall(i,j).neighborx.begin();a!=atomall(i,j).neighborx.end();a++){
+                temp=str_tensor(atomall(i,j),atomall(*a,*b));
+                for(size_t k=0;k<4;k++){
+                    all[k]=all[k]+temp[k];
+                }
+                b++;
+            }
+            atomall(i,j).setstress_tensor(all);
+        }
+}
+int count(ndarrays<atom>& all,atom& input,double r,int size){
+    int c=0;
+    for(size_t i=0;i<size;i++)
+        for(size_t j=0;j<size;j++){
+            if(distance(all(i,j),input)<r){
+                c++;
+            }
+        }
+    return c-1;
+}
