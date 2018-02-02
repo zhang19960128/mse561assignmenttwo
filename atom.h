@@ -11,7 +11,7 @@ class atom{
 		friend double distance(atom&,atom&);
 		friend double potential(atom&,atom&);
 		friend void updatelist(ndarrays<atom>&,int);
-		friend std::vector<double> force(atom&,atom&);
+		friend std::vector<double> str_tensor(atom&,atom&);
 		void setx(double x1){
 			x=x1;
 		}

@@ -21,9 +21,24 @@ double potential(atom& one,atom& two){
 	}
 }
 //the force exerted on one by two
-std::vector<double> force(atom& one,atom& two){
+std::vector<double> str_tensor(atom& one,atom& two){
 	std::vector<double> a(4,0);
-	return a;
+	double r=distance(one,two);
+    double deri=0;
+    if(r<r0){
+        deri=24*eps/r*(-2*pow(sigma/r,12)+pow(sigma/r,6));
+    }
+    else if(r<r_cut){
+        deri=3*A*(r-r_cut)*(r-r_cut)+2*B*(r-r_cut);
+    }
+    else{
+        deri=0.0;
+    }
+    a[0]=deri*(one.x-two.x)*(one.x-two.x)/r;
+    a[1]=deri*(one.x-two.x)*(one.y-two.y)/r;
+    a[2]=deri*(one.x-two.x)*(one.y-two.y)/r;
+    a[3]=deri*(one.y-two.y)*(one.y-two.y)/r;
+    return a;
 }
 void updatelist(ndarrays<atom>& input,int size){
 	for(size_t i=0;i<size;i++)

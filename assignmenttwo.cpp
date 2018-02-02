@@ -17,4 +17,5 @@ int main(){
 			atomfile<<i*r_min<<" "<<j*r_min<<" "<<0.1*r_min<<std::endl;
 		}
 	updatelist(atomall,size);
+
 }

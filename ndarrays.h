@@ -14,7 +14,6 @@ template<typename T> class ndarrays{
 		~ndarrays(){
 		delete [] p;
   	}
-	friend std::ostream& operator<<(std::ostream &os,ndarrays& out);
 	private:
 		int dimention;
 		std::vector<int> size;
@@ -89,21 +88,5 @@ T& ndarrays<T>::operator()(int a,...){
 		else temp=temp*size[t+1]+coord[t+1];
 	}
 	return p[temp];
-}
-template<typename T>
-std::ostream& operator<<(std::ostream& os, ndarrays<T>& out){
-	int temp=1;
-	os<<"the dimention of the array is: "<<out.dimention<<std::endl;
-	os<<"the sizes of different dimention are:"<<std::endl;
-	for(auto t=out.size.cbegin();t!=out.size.cend();t++){
-		os<<*t<<" ";
-		temp=(*t)*temp;
-	}
-	os<<std::endl;
-	os<<"elements are:"<<std::endl;
-	for(size_t t=0;t<temp;t++){
-		os<<(out.p)[t]<<std::endl;
-	}
-	return os;
 }
 #endif
