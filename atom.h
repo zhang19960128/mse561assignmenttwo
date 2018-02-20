@@ -4,6 +4,8 @@
 #include <list>
 #include <vector>
 #include "ndarrays.h"
+#include <iostream>
+#include <fstream>
 class atom{
 	public:
 		atom()=default;
@@ -11,9 +13,9 @@ class atom{
 		friend double distance(atom&,atom&);
 		friend double potential(atom&,atom&);
 		friend void updatelist(ndarrays<atom>&,int);
-        friend void updatetensor(ndarrays<atom>&,int);
+    friend void updatetensor(ndarrays<atom>&,int);
 		friend std::vector<double> str_tensor(atom&,atom&);
-        void setx(double x1){
+    void setx(double x1){
 			x=x1;
 		}
 		void sety(double x2){
@@ -22,12 +24,12 @@ class atom{
 		void setr(double ra){
 			radius=ra;
 		}
-        void setstress_tensor(std::vector<double> a){
+    void setstress_tensor(std::vector<double> a){
             stresstensor=a;
-        }
-        std::vector<double> getstress(){
-            return stresstensor;
-        }
+    }
+    std::vector<double> getstress(){
+			return stresstensor;
+    }
 		double getx(){
 			return x;
 		}
@@ -55,7 +57,9 @@ class atom{
 		printneighbor();
 		printstress();
 	}
-		private:
+	friend std::ostream& operator<<(std::ostream& os,atom& output);
+	friend std::fstream& operator<<(std::fstream& fs,atom& output);
+	private:
 		double x;
 		double y;
 		double radius;

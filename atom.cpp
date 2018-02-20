@@ -92,3 +92,8 @@ std::ostream& operator<<(std::ostream& os,atom& output){
 		os<<"stress tensor(xx,xy,yx,yy): "<<output.stresstensor[0]<<" "<<output.stresstensor[1]<<" "<<output.stresstensor[2]<<" "<<output.stresstensor[3]<<std::endl;
 		return os;
 }
+std::fstream& operator<<(std::fstream& os,atom& output){
+		os<<"for atom position ("<<output.x<<","<<output.y<<")"<<std::endl;
+		os<<"stress tensor(xx,xy,yx,yy): "<<output.stresstensor[0]<<" "<<output.stresstensor[1]<<" "<<output.stresstensor[2]<<" "<<output.stresstensor[3]<<std::endl;
+		return os;
+}
