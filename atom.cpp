@@ -87,3 +87,8 @@ int count(ndarrays<atom>& all,atom& input,double r,int size){
         }
     return c-1;
 }
+std::ostream& operator<<(std::ostream& os,atom& output){
+		os<<"for atom position ("<<output.x<<","<<output.y<<")"<<std::endl;
+		os<<"stress tensor(xx,xy,yx,yy): "<<output.stresstensor[0]<<" "<<output.stresstensor[1]<<" "<<output.stresstensor[2]<<" "<<output.stresstensor[3]<<std::endl;
+		return os;
+}
