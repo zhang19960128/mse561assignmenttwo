@@ -39,5 +39,11 @@ int main(){
         radis<<r_inter<<" "<<ra_dis[i]<<std::endl;
     }
     radis.close();
-		atomall(10,10).printinfo();
+		std::fstream tensor;
+		tensor.open("tensor_distribution.txt",std::fstream::out);
+		for(size_t i=0;i<size;i++)
+			for(size_t j=0;j<size;j++){
+				tensor<<atomall(i,j);
+			}
+		tensor.close();
 }
