@@ -37,13 +37,31 @@ class atom{
 		double getr(){
 			return radius;
 		}
-	private:
+	void printneighbor(){
+			std::list<int>::iterator b=neighbory.begin();
+			std::cout<<"the neighbors are:"<<std::endl;
+			for(std::list<int>::iterator a=neighborx.begin();a!=neighborx.end();a++){
+				std::cout<<"("<<*a<<","<<*b<<")"<<std::endl;
+				b++;
+			}
+		}
+	void printstress(){
+		std::cout<<"the stress tensor is: (sigma_xx,sigma_xy;sigma_yx,sigma_yy):"<<std::endl;
+		std::cout<<stresstensor[0]<<" "<<stresstensor[1]<<std::endl;
+		std::cout<<stresstensor[2]<<" "<<stresstensor[3]<<std::endl;
+	}
+	void printinfo(){
+		std::cout<<"for atom position ("<<x<<","<<y<<")"<<std::endl;
+		printneighbor();
+		printstress();
+	}
+		private:
 		double x;
 		double y;
 		double radius;
 		std::list<int> neighborx;
 		std::list<int> neighbory;
-        std::vector<double> stresstensor;
+    std::vector<double> stresstensor;
 };
 int count(ndarrays<atom>& all,atom&,double r,int size);
 #endif

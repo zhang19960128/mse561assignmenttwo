@@ -51,7 +51,7 @@ void updatelist(ndarrays<atom>& input,int size){
 			for(size_t k=0;k<size;k++)
 				for(size_t l=0;l<size;l++)
 				{
-					if(distance(input(i,j),input(k,l))<r_cut){
+					if(distance(input(i,j),input(k,l))<r_cut && distance(input(i,j),input(k,l))>0.0){
 						input(i,j).neighborx.push_back(k);
 						input(i,j).neighbory.push_back(l);
 					}

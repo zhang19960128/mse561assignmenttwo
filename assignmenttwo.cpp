@@ -17,7 +17,7 @@ int main(){
 			atomfile<<i*r_min<<" "<<j*r_min<<" "<<0.1*r_min<<std::endl;
 		}
     atomfile.close();
-	updatelist(atomall,size);
+  	updatelist(atomall,size);
     updatetensor(atomall,size);
     double r_start=0.0000001;
     double r_stop=15;
@@ -39,4 +39,5 @@ int main(){
         radis<<r_inter<<" "<<ra_dis[i]<<std::endl;
     }
     radis.close();
+		atomall(10,10).printinfo();
 }
